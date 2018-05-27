@@ -22,7 +22,7 @@
 
 #include <stdint.h>
 #include "VoodooCSGestureHIDWrapper.h"
-#include "VoodooCSGestureHIPointingWrapper.hpp"
+#include "VoodooCSGestureHIDEventServiceWrapper.hpp"
 #include "csgesture-softc.h"
 #include "csgesturescroll.h"
 
@@ -34,7 +34,7 @@ class VoodooI2CCSGestureEngine : VoodooI2CMultitouchEngine {
     OSDeclareDefaultStructors(VoodooI2CCSGestureEngine);
 private:
     VoodooCSGestureHIDWrapper *_wrapper;
-    VoodooCSGestureHIPointingWrapper *_pointingWrapper;
+    VoodooCSGestureHIDEventServiceWrapper *_pointingWrapper;
     CSGestureScroll *_scrollHandler;
     
     struct {
@@ -51,6 +51,7 @@ private:
     //os callbacks
     void update_relative_mouse(char button,
                                char x, char y, char wheelPosition, char wheelHPosition);
+    void update_absolute_mouse(char button, SInt16 x, SInt16 y);
     void update_keyboard(uint8_t shiftKeys, uint8_t *keyCodes);
 public:
     csgesture_softc softc;

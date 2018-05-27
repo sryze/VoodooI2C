@@ -209,8 +209,19 @@ bool VoodooI2CCSGestureEngine::ProcessMove(csgesture_softc *sc, int abovethresho
             }
         }
         
-        sc->dx = delta_x;
-        sc->dy = delta_y;
+        if (!sc->settings.display_integrated){
+            sc->dx = delta_x;
+            sc->dy = delta_y;
+        } else {
+            sc->dx = 0;
+            sc->dy = 0;
+            
+            UInt8 buttonMask = sc->buttonmask;
+            if (sc->x[i] != -1 && sc->y[i] != -1)
+                buttonMask |= MOUSE_BUTTON_1;
+            
+            update_absolute_mouse(buttonMask, sc->x[i], sc->y[i]);
+        }
         
         sc->panningActive = true;
         sc->idForPanning = i;
@@ -797,7 +808,8 @@ void VoodooI2CCSGestureEngine::ProcessGesture(csgesture_softc *sc) {
         TapToClickOrDrag(sc, releasedfingers);
     
 #pragma mark send to system
-    update_relative_mouse(sc->buttonmask, sc->dx, sc->dy, sc->scrolly, sc->scrollx);
+    if (!sc->settings.display_integrated || sc->dx != 0 || sc->dy != 0 || sc->scrollx != 0 || sc->scrolly != 0)
+        update_relative_mouse(sc->buttonmask, sc->dx, sc->dy, sc->scrolly, sc->scrollx);
 }
 
 #pragma mark OS Specific functions
@@ -861,7 +873,7 @@ bool VoodooI2CCSGestureEngine::start(IOService *service) {
         return false;
     }
     
-    _pointingWrapper = new VoodooCSGestureHIPointingWrapper;
+    _pointingWrapper = new VoodooCSGestureHIDEventServiceWrapper;
     if (_pointingWrapper->init()){
         _pointingWrapper->gesturerec = this;
         _pointingWrapper->attach(service);
@@ -960,6 +972,11 @@ void VoodooI2CCSGestureEngine::stop(IOService* provider) {
 void VoodooI2CCSGestureEngine::update_relative_mouse(char button, char x, char y, char wheelPosition, char wheelHPosition){
     if (_pointingWrapper)
         _pointingWrapper->updateRelativeMouse(x, y, button);
+}
+
+void VoodooI2CCSGestureEngine::update_absolute_mouse(char button, SInt16 x, SInt16 y){
+    if (_pointingWrapper)
+        _pointingWrapper->updateAbsoluteMouse(x, y, button);
 }
 
 void VoodooI2CCSGestureEngine::update_keyboard(uint8_t shiftKeys, uint8_t keyCodes[KBD_KEY_CODES]) {
