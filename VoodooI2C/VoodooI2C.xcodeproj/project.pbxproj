@@ -267,6 +267,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6D9B476D21EAA4C00083210E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7B30D6981F91141300190488 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +366,7 @@
 				AC2603B21F2F294000CF238F /* VoodooI2C */,
 				AC2603B71F2F294000CF238F /* Info.plist */,
 				AC2603B11F2F294000CF238F /* Products */,
+				6D9B476D21EAA4C00083210E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -541,7 +549,6 @@
 				AC0955921F4EE9B00052E343 /* Add GPIO and Services Plugin */,
 				ACC7F1451FEC9EA800200004 /* Output Version Number */,
 				ACA4A00D21E25F0E00A91B61 /* Linting */,
-				ACA4A00F21E25F3500A91B61 /* Generate Documentation */,
 			);
 			buildRules = (
 			);
@@ -566,7 +573,7 @@
 		AC2603A71F2F294000CF238F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Alexandre Daoud";
 				TargetAttributes = {
 					AC2603AF1F2F294000CF238F = {
@@ -749,24 +756,6 @@
 			shellPath = /bin/sh;
 			shellScript = "cpplint --recursive --filter=-build/header_guard,-whitespace/line_length,-runtime/int ./\n";
 		};
-		ACA4A00F21E25F3500A91B61 /* Generate Documentation */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Generate Documentation";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "pwd; find .*/VoodooI2C .*/Dependencies .*/Multitouch\\ Support .*/VoodooI2C\\ Satellites -name \"*.hpp\" -print0 | xargs -0 cldoc generate -I. -I.*/Dependencies/Headers -x c++ -arch x86_64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -nostdinc -std=gnu++11 -stdlib=libc++ -fmodules -gmodules -fmodules-cache-path=${MODULE_CACHE_DIR} -fmodules-prune-interval=86400 -fmodules-prune-after=345600 -fbuild-session-file=${MODULE_CACHE_DIR}/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror=non-modular-include-in-framework-module -fno-builtin -Wno-trigraphs -fno-exceptions -fno-rtti -msoft-float -O0 -fno-common -mkernel -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wunreachable-code -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wno-inconsistent-missing-override -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DDEBUG=1 -DKERNEL -DKERNEL_PRIVATE -DDRIVER_PRIVATE -DAPPLE -DNeXT -fapple-kext -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.10 -g -Wno-sign-conversion -Winfinite-recursion -Wno-move -I${SDK_ROOT}/System/Library/Frameworks/Kernel.framework/PrivateHeaders -I${SDK_ROOT}/System/Library/Frameworks/Kernel.framework/Headers -I${DERIVED_SOURCES_DIR}/x86_64 -I${DERIVED_SOURCES_DIR} -I\"../Dependencies/Headers\" -Wno-inconsistent-missing-override -Wno-unused-variable -- --output ../docs --report --merge \"../Documentation\" --basedir .\n";
-		};
 		ACC7F1451FEC9EA800200004 /* Output Version Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -867,15 +856,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -898,7 +896,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -914,15 +912,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -939,7 +946,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -953,9 +960,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2.1.4;
-				"HEADER_SEARCH_PATHS[arch=*]" = "\"../Dependencies/Headers\"/**";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VoodooI2C/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MODULE_NAME = com.alexandred.VoodooI2C;
 				MODULE_VERSION = 2.1.4;
 				"OTHER_CPLUSPLUSFLAGS[arch=*]" = "-Wno-inconsistent-missing-override";
@@ -976,7 +983,7 @@
 				CURRENT_PROJECT_VERSION = 2.1.4;
 				"HEADER_SEARCH_PATHS[arch=*]" = "\"../Dependencies/Headers\"/**";
 				INFOPLIST_FILE = VoodooI2C/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MODULE_NAME = com.alexandred.VoodooI2C;
 				MODULE_VERSION = 2.1.4;
 				ONLY_ACTIVE_ARCH = YES;
